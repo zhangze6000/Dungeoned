@@ -1,0 +1,4 @@
+// the configured options and settings for Tutorial
+#define Remote_System_VERSION_MAJOR @Remote_System_VERSION_MAJOR@
+#define Remote_System_VERSION_MINOR @Remote_System_VERSION_MINOR@
+
