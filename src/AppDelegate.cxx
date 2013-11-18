@@ -29,6 +29,7 @@ THE SOFTWARE.
 
 #include "HelloWorldScene.h"
 #include "AppMacros.h"
+#include "SceneMenu.h"
 
 USING_NS_CC;
 using namespace std;
@@ -97,9 +98,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
+  //  CCScene *pScene = HelloWorld::scene();
     // run
-    pDirector->runWithScene(pScene);
+  //  pDirector->runWithScene(pScene);
+	CSceneMenu* pScene = CSceneMenu::create();
+	pDirector->runWithScene(pScene);
 
     return true;
 }
