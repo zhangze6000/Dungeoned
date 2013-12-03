@@ -8,6 +8,8 @@ public:
 	~CLayerMenu(void);
 	bool init(void);
 	void menuStartCallback(CCObject* pSender);
+	void menuAboutCallback(CCObject* pSender);
+	void menuEndCallback(CCObject* pSender);
 	CREATE_FUNC(CLayerMenu);
 };
 

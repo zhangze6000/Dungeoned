@@ -4,7 +4,7 @@ project (Dungeoned)
 # The version number.
 set (Remote_System_VERSION_MAJOR 1)
 set (Remote_System_VERSION_MINOR 0)
-
+option(TIXML_USE_STL "Use Tixml With Stl" ON)
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file (
@@ -26,6 +26,9 @@ include_directories("include/cocos2dx/platform/win32")
 include_directories("include/cocos2dx/platform/third_party/win32/OGLES")
 include_directories("include/cocos2dx/kazmath/include")
 include_directories("include/extensions")
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
+
+
 add_subdirectory(src)
 
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language>
+  <LanguageType>
+    中文
+  </LanguageType>
+  <LaguangeString>
+    <Title>魔塔世界</Title>
+    <MenuStart>开始游戏</MenuStart>
+    <MenuAbout>关于游戏</MenuAbout>
+    <MenuEnd>结束游戏</MenuEnd>
+  </LaguangeString>
+</Language>

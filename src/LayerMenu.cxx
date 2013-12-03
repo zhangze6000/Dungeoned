@@ -1,11 +1,9 @@
+
+#include "Dungeoned.h"
+
 #include "LayerMenu.h"
-#include <cocos-ext.h>
-#include "AppMacros.h"
-#include <string>
-#include <wchar.h>
 #include "SceneGame.h"
-USING_NS_CC;
-USING_NS_CC_EXT;
+
 
 CLayerMenu::CLayerMenu(void)
 {
@@ -18,25 +16,29 @@ CLayerMenu::~CLayerMenu(void)
 {
 }
 
-char* G2U( const char* gb2312 )
-{
-	int len = MultiByteToWideChar(CP_ACP, 0, gb2312, -1, NULL, 0);    
-	wchar_t* wstr = new wchar_t[len+1];    
-	memset(wstr, 0, len+1);    
-	MultiByteToWideChar(CP_ACP, 0, gb2312, -1, wstr, len);    
-	len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);    
-	char* str = new char[len+1];    
-	memset(str, 0, len+1);    
-	WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, len, NULL, NULL);    
-	if(wstr) delete[] wstr;    
-	return str;
-}
+
 
 void CLayerMenu::menuStartCallback(CCObject* pSender)
 {
 	CSceneGame* s = CSceneGame::create();
 	CCDirector::sharedDirector()->replaceScene(s);
 }
+
+void CLayerMenu::menuAboutCallback(CCObject* pSender)
+{
+	TRACE("%s\n",__FUNCTION__);
+}
+
+void CLayerMenu::menuEndCallback(CCObject* pSender)
+{
+	TRACE("%s\n",__FUNCTION__);
+	if(IDOK == _CALEART(_T("你确定要退出？"),_T("魔塔对话框"),MB_OKCANCEL))
+	{
+		exit(0);
+	}
+
+}
+
 
 bool CLayerMenu::init(void)
 {
@@ -50,7 +52,7 @@ bool CLayerMenu::init(void)
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 	
-	CCLabelTTF* pLabel = CCLabelTTF::create(G2U("魔塔世界"), "黑体", TITLE_FONT_SIZE);
+	CCLabelTTF* pLabel = CCLabelTTF::create(_Language.GetString("Title").data(), "黑体", TITLE_FONT_SIZE);
 
 	// position the label on the center of the screen
 	pLabel->setPosition(ccp(origin.x + visibleSize.width/2,
@@ -62,9 +64,9 @@ bool CLayerMenu::init(void)
 	CCMenuItemFont::setFontName("宋体");
 	CCMenuItemFont::setFontSize(25);
 
-	CCMenuItemFont* start = CCMenuItemFont::create(G2U("开始游戏"),this,menu_selector(CLayerMenu::menuStartCallback));
-	CCMenuItemFont* about =  CCMenuItemFont::create(G2U("关于游戏"),this,NULL);
-	CCMenuItemFont* end =  CCMenuItemFont::create(G2U("结束游戏"),this,NULL);
+	CCMenuItemFont* start = CCMenuItemFont::create(_Language.GetString("MenuStart").data(),this,menu_selector(CLayerMenu::menuStartCallback));
+	CCMenuItemFont* about =  CCMenuItemFont::create(_Language.GetString("MenuAbout").data(),this,menu_selector(CLayerMenu::menuAboutCallback));
+	CCMenuItemFont* end =  CCMenuItemFont::create(_Language.GetString("MenuEnd").data(),this,menu_selector(CLayerMenu::menuEndCallback));
 
 	CCMenu* menu= CCMenu::create(start,about,end,NULL);
 	menu->alignItemsVerticallyWithPadding(20);
